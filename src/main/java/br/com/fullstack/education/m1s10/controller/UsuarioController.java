@@ -26,13 +26,14 @@ public class UsuarioController {
     }
 
     @GetMapping("{id}")
-    public UsuarioEntity getId(@PathVariable Long id) throws Exception {
-        return service.buscarPorId(id);
+    public ResponseEntity<UsuarioEntity> getId(@PathVariable Long id) throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorId(id));
     }
 
     @GetMapping("login/{login}")
-    public UsuarioEntity getLogin(@PathVariable String login) throws Exception {
-        return service.buscarPorLogin(login);
+    public ResponseEntity<UsuarioEntity> getLogin(@PathVariable String login) throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorLogin(login));
+
     }
 
     @PostMapping
@@ -42,13 +43,14 @@ public class UsuarioController {
     }
 
     @PutMapping("{id}")
-    public UsuarioEntity put(@PathVariable Long id, @RequestBody UsuarioEntity usuario) throws Exception {
-        return service.alterar(id, usuario);
+    public ResponseEntity<UsuarioEntity> put(@PathVariable Long id, @RequestBody UsuarioEntity usuario) throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body(service.alterar(id, usuario));
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Void> delete(@PathVariable Long id) throws Exception {
         service.apagar(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
