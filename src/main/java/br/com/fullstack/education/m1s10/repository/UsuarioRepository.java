@@ -2,7 +2,6 @@ package br.com.fullstack.education.m1s10.repository;
 
 import br.com.fullstack.education.m1s10.entity.UsuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;

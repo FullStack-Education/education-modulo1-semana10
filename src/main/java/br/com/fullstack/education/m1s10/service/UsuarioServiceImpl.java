@@ -2,7 +2,6 @@ package br.com.fullstack.education.m1s10.service;
 
 import br.com.fullstack.education.m1s10.dto.UsuarioFiltro;
 import br.com.fullstack.education.m1s10.entity.UsuarioEntity;
-import br.com.fullstack.education.m1s10.exception.error.NotFoundException;
 import br.com.fullstack.education.m1s10.exception.error.UsuarioByIdNotFoundException;
 import br.com.fullstack.education.m1s10.exception.error.UsuarioByLoginNotFoundException;
 import br.com.fullstack.education.m1s10.repository.UsuarioRepository;
