@@ -2,15 +2,23 @@ package br.com.fullstack.education.m1s10.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 @Table(name = "livro")
-@EqualsAndHashCode(callSuper = true)
-public class LivroEntity extends AbstractEntity {
+public class LivroEntity implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDateTime criadoEm;
+
+    private LocalDateTime alteradoEm;
 
     @Column(nullable = false, length = 150)
     private String titulo;
