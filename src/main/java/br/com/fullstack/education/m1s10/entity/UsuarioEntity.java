@@ -1,18 +1,13 @@
 package br.com.fullstack.education.m1s10.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Data;
-
-import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "usuario")
-public class UsuarioEntity implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class UsuarioEntity extends AbstractEntity {
 
     private String nome;
 
