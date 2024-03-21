@@ -2,6 +2,9 @@ package br.com.fullstack.education.m1s10.service;
 
 import br.com.fullstack.education.m1s10.dto.UsuarioFiltro;
 import br.com.fullstack.education.m1s10.entity.UsuarioEntity;
+import br.com.fullstack.education.m1s10.exception.error.NotFoundException;
+import br.com.fullstack.education.m1s10.exception.error.UsuarioByIdNotFoundException;
+import br.com.fullstack.education.m1s10.exception.error.UsuarioByLoginNotFoundException;
 import br.com.fullstack.education.m1s10.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -31,14 +34,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioEntity buscarPorId(Long id) throws Exception {
-        return repository.findById(id).orElseThrow(() -> new Exception("Usuário não encontrado"));
+    public UsuarioEntity buscarPorId(Long id) {
+        return repository.findById(id).orElseThrow(() -> new UsuarioByIdNotFoundException(id));
     }
 
     @Override
-    public UsuarioEntity buscarPorLogin(String login) throws Exception {
+    public UsuarioEntity buscarPorLogin(String login) {
         Optional<UsuarioEntity> opt = repository.findTop1ByLogin(login);
-        return opt.orElseThrow(() -> new Exception("Usuário não encontrado"));
+        return opt.orElseThrow(() -> new UsuarioByLoginNotFoundException(login));
     }
 
     @Override
@@ -48,7 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioEntity alterar(Long id, UsuarioEntity usuario) throws Exception {
+    public UsuarioEntity alterar(Long id, UsuarioEntity usuario) {
         UsuarioEntity entity = buscarPorId(id);
         entity.setNome(usuario.getNome());
         entity.setLogin(usuario.getLogin());
@@ -58,7 +61,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void apagar(Long id) throws Exception {
+    public void apagar(Long id) {
         UsuarioEntity entity = buscarPorId(id);
         repository.delete(entity);
     }

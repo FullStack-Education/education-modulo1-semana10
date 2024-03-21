@@ -4,10 +4,8 @@ import br.com.fullstack.education.m1s10.dto.UsuarioFiltro;
 import br.com.fullstack.education.m1s10.entity.UsuarioEntity;
 import br.com.fullstack.education.m1s10.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +31,6 @@ public class UsuarioController {
     @GetMapping("login/{login}")
     public ResponseEntity<UsuarioEntity> getLogin(@PathVariable String login) throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(service.buscarPorLogin(login));
-
     }
 
     @PostMapping
